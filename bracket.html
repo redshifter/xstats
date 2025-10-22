@@ -1,0 +1,1647 @@
+<html>
+<head>
+<title>LOL X-Bracketle</title>
+
+<link rel="stylesheet" type="text/css" href="styl.css" />
+
+<meta property="og:title" content="LOL X-Stats Bracketle" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="The weekly X-Stats game for people who got too into this." />
+
+</head>
+<body>
+<div id="noscript">
+	<p>Oops, you turned off JavaScript<noscript> (or NoScript is getting in the way)</noscript>.</p>
+	<p>Challenge again.</p>
+</div>
+<div id="error" style="display:none">
+</div>
+<div id="game" style="display:none">
+	<span class="title">LOL X-BRACKETLE #<span id="number"></span></span>
+	<br/>
+	A new game every Sunday (use UTC time).
+	<p id="results"></p>
+	<p>
+	Directions: Simply pick the characters who would get more votes on an outdated Internet website.
+	</p>
+	<p class="finePrint">I used the unadjusted stats because I have no idea where to find the good ones. Eh I'm sure it'll be fine.</p>
+	<div id="activeGame">
+		<p>
+			You must select ALL matches and then hit Submit.
+			<br>
+			Maximum Score is 40 points.
+		</p>
+		<div id="theDamnBracket">
+			<table>
+				<tr>
+					<th><strong>ROUND 1</strong></th>
+					<th><strong>ROUND 2</strong></th>
+					<th><strong>SEMI-FINALS</strong></th>
+					<th><strong>FINALS</strong></th>
+				</tr>
+				<tr>
+					<td id="m0">A</td>
+					<td id="m8" rowspan='2'>B</td>
+					<td id="m12" rowspan='4'>C</td>
+					<td id="m14" rowspan='8'>D</td>
+				</tr>
+				<tr>
+					<td id="m1">A</td>
+				</tr>
+				<tr>
+					<td id="m2">A</td>
+					<td id="m9" rowspan='2'>B</td>
+				</tr>
+				<tr>
+					<td id="m3">A</td>
+				</tr>
+				<tr>
+					<td id="m4">A</td>
+					<td id="m10" rowspan='2'>B</td>
+					<td id="m13" rowspan='4'>C</td>
+				</tr>
+				<tr>
+					<td id="m5">A</td>
+				</tr>
+				<tr>
+					<td id="m6">A</td>
+					<td id="m11" rowspan='2'>B</td>
+				</tr>
+				<tr>
+					<td id="m7">A</td>
+				</tr>
+			</table>
+		</div>
+		<p>
+			<strong>Win Percentage for Winner in Finals:</strong> <input type="input" id="winPercent" style="width:40px" /> %
+			<br/>
+			<span class="smallerPrint">Get within 3.00% for full points.</span>
+			<br/>
+			<p>
+				<span id="ultimateLoser" style="display:none">
+					<strong>BONUS GAME: ULTIMATE LOSER</strong></br>
+					<span>Get the Ultimate Loser chain correct for up to +4 bonus points.</span><br/>
+					<span class="finePrint">The Ultimate Loser is the entrant that loses to the entrant that loses to the entrant, etc, all the way to the winner.</span>
+				</span>
+				<span id="turboFodder" style="display:none">
+					<strong>BONUS GAME: TURBO FODDER</strong></br>
+					<span>Choose the most fodderific character for up to +4 bonus points.</span><br/>
+					<span class="finePrint">The weakest character.</span><br/>
+					<input type='radio' id="fod0" name="fodder" value="0" /><label id="fodd0" for="fod0">[finish round 1]</label><br/>
+					<input type='radio' id="fod1" name="fodder" value="1" /><label id="fodd1" for="fod1">[finish round 1]</label><br/>
+					<input type='radio' id="fod2" name="fodder" value="2" /><label id="fodd2" for="fod2">[finish round 1]</label><br/>
+					<input type='radio' id="fod3" name="fodder" value="3" /><label id="fodd3" for="fod3">[finish round 1]</label><br/>
+					<input type='radio' id="fod4" name="fodder" value="4" /><label id="fodd4" for="fod4">[finish round 1]</label><br/>
+					<input type='radio' id="fod5" name="fodder" value="5" /><label id="fodd5" for="fod5">[finish round 1]</label><br/>
+					<input type='radio' id="fod6" name="fodder" value="6" /><label id="fodd6" for="fod6">[finish round 1]</label><br/>
+					<input type='radio' id="fod7" name="fodder" value="7" /><label id="fodd7" for="fod7">[finish round 1]</label><br/>
+				</span>
+				<span id="fourPack" style="display:none">
+					<strong>BONUS GAME: FOUR PACK</strong></br>
+					<span>Four random characters from this bracket are fighting in a side bracket.</span><br/>
+					<span class="finePrint">Standard bracket scoring for up to +4 bonus points.</span><br/>
+					<table>
+						<tr>
+							<td id="four0">A</td>
+							<td id="four2" rowspan='2'>B</td>
+						</tr>
+						<tr>
+							<td id="four1">A</td>
+						</tr>
+					</table>
+				</span>				
+				<span id="tannerGame" style="display:none">
+					<strong>BONUS GAME: T4NN3R B0NU5</strong></br>
+					<span>Win Percentage of the Winner if they faced Tanner: <input type="input" id="tannerPercent" style="width:40px" /> %</span><br/>
+					<span class="smallerPrint">Get within 3.00% for up to +4 bonus points.</span>
+				</span>
+				<span id="instantClassic" style="display:none">
+					<strong>BONUS GAME: INSTANT CLASSIC</strong></br>
+					How do you feel about <span id="classicChar">L-Block vs Travis Touchdown</span>?<br/>
+					<span class="smallerPrint">Do you think you have it right? Do you think it's close?</span><br/>
+					<input type='radio' id="classicW" name='classicr' value='W' /><label for='classicW'>It was never in doubt! (+4 if correct)</label><br/>
+					<input type='radio' id="classicY" name='classicr' value='Y' /><label for='classicY'>Instant Classic! (+4 if Legendary, +3 if Very Hard)</label><br/>
+					<input type='radio' id="classicN" name='classicr' value='N' /><label for='classicN'>I'm kind of winging it... (+2 guaranteed)</label><br/>
+					<br/>
+					<span id="ic_patch0" style="display:none" class="smallerPrint">
+							<strong>WEEK 1 WAS PLAYED UNDER DIFFERENT RULES:</strong><br/>
+							- Legendary: X-Stat values are within 1.4%<br/>
+							- Very Hard: X-Stat values are within 2.9%
+					</span>
+					<span id="ic_patch1" class="smallerPrint">
+						- Legendary: Winner gets 53.00% or less of the vote<br/>
+						- Very Hard: Winner gets 57.00% or less of the vote
+					</span>
+				</span>
+				<span id="nobleBuster" style="display:none">
+					<strong>BONUS GAME: CASUAL REVOLUTION</strong></br>
+					<span>Does the Noble Nine lose to anyone outside the Noble Nine?</span><br/>
+					<span class="smallerPrint">The Noble Nine is: Link, Cloud, Sephiroth, Mario, Samus, Sonic, Mega Man, Snake, and Crono.</span><br/>
+					<input type='radio' id="noblerN" name='nobler' value='N'/><label for='noblerN'>Long live the Noble Nine! (+4 if correct)</label><br/>
+					<input type='radio' id="noblerY" name='nobler' value='Y'/><label for='noblerY'>The Noble Nine dies tonight! (+4 if correct)</label><br/>
+					<input type='radio' id="noblerU" name='nobler' value='U'/><label for='noblerU'>Maybe if there's a rally... (+2 guaranteed)</label>
+				</span>
+			</p>
+			<br/>
+			<input type="button" value="Submit" onclick="submitBracket()" class="butt" />
+			<p id="invalidBracket" class="smallerPrint"></p>
+		</p>
+		<div id="contestInfo" class="smallerPrint">
+		</div>
+	</div>
+	<p id="runContest" style="display:none">
+		<span id="runContestResults"></span><br/>
+		<input type="button" value="Speed it up" onclick="speedItUp()" class="butt" />
+	</p>
+	
+	<div id="endedGame" style="display:none">
+		<p>You got <span id="points"></span> out of 40 points.</p>
+		<textarea id="shareable" readonly="true" cols="30" rows="4">#lolXStats #1\r\nLine 2</textarea>
+		<span class="finePrint">
+			<br/>
+			The text above is:<br/>
+			- The Four Rounds of the Bracket (max 8 per round)<br/>
+			- Win Percentage (max 4)<br/>
+			- Bonus Game (green = 4, red = 0, yellow = somewhere in between)<br/>
+			- Your Overall Score
+		</span>
+		<div id="scoreResults"></div>
+		<div id="theDamnBracket2">
+			<table>
+				<tr>
+					<th><strong>ROUND 1</strong></th>
+					<th><strong>ROUND 2</strong></th>
+					<th><strong>SEMI-FINALS</strong></th>
+					<th><strong>FINALS</strong></th>
+				</tr>
+				<tr>
+					<td id="me0">A</td>
+					<td id="me8" rowspan='2'>B</td>
+					<td id="me12" rowspan='4'>C</td>
+					<td id="me14" rowspan='8'>D</td>
+				</tr>
+				<tr>
+					<td id="me1">A</td>
+				</tr>
+				<tr>
+					<td id="me2">A</td>
+					<td id="me9" rowspan='2'>B</td>
+				</tr>
+				<tr>
+					<td id="me3">A</td>
+				</tr>
+				<tr>
+					<td id="me4">A</td>
+					<td id="me10" rowspan='2'>B</td>
+					<td id="me13" rowspan='4'>C</td>
+				</tr>
+				<tr>
+					<td id="me5">A</td>
+				</tr>
+				<tr>
+					<td id="me6">A</td>
+					<td id="me11" rowspan='2'>B</td>
+				</tr>
+				<tr>
+					<td id="me7">A</td>
+				</tr>
+			</table>
+		</div>
+		<div id="matchResults"></div>
+	</div>
+	<div>
+		<br/>
+		<br/>
+		<p>Play a different week?</p>
+		<p>
+			<input type="input" id="arbitrary" style="width:60px" />
+			<input type="button" value="Play Game" id="exitButton" onclick="tryGenerateGame()" />
+		</p>
+		<p id="invalidGame" class="finePrint"></p>
+	</div>
+	<div id="gameList">
+	</div>
+</div>
+<script type="text/javascript" src="rng.js"></script>
+<script type="text/javascript" src="dat.js"></script>
+<script type="text/javascript" src="override.js"></script>
+<script type="text/javascript" src="contestHistory.js"></script>
+<script type="text/javascript" src="gameList.js"></script>
+<script type="text/javascript" src="utility.js"></script>
+<script>
+	document.getElementById("noscript").style.display = "none"
+	document.getElementById("error").style.display = ""
+	document.getElementById("error").innerHTML = "argh i tore my JS compiler"
+</script>
+<script>
+	var DEBUG_HASH = "" // if we did actual good code maybe this would've been easy to do
+
+	document.getElementById("error").style.display = "none"
+	var textBlock = ["🟩","🟥","⬜","🟨"] // green, red, blank, yellow
+	var numeric = ["0️⃣","1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣"]
+	var answer = ["✔️", "❌"]
+	var emoji = "✘["
+
+	// output design
+	// x[ 8 8 8 8 4 4 (40/40)
+	
+	var testFlag = false
+
+	var bonusGame = "ultimateLoser"
+	var chosenPercent
+	var gameNumber = 0
+	var chara = []
+	var bracket = []
+	var speedUp = false
+	
+	var chosenTannerPercent
+	var classicMatch
+	var fourPack
+	var nobleBusted
+	var nobleLoser
+	
+	function generateGame(number) {
+		try {
+			DEBUG_HASH = number + ":"
+			gameNumber = number
+			chara = []
+			bracket = []
+			speedUp = false
+			
+			document.getElementById("activeGame").style.display = ""
+			document.getElementById("runContest").style.display = "none"
+			document.getElementById("endedGame").style.display = "none"
+			
+			document.getElementById("winPercent").value = "50"
+			generateBracketObjects2();
+			
+			document.getElementById("number").innerHTML = number
+			seedRandom(number + 69 + 420 + 1312 + 42069)
+			generateData()
+			simulateBracket()
+			chooseBonusGame()
+			
+			var index = 0
+			for( var match = 0; match < 8; match++ ) {
+				for( var choice = 0; choice < 2; choice++ ) {
+					document.getElementById("ch" + getId(0, match, choice)).innerHTML = chara[index].ch
+					index++
+				}
+			}
+		}
+		catch( e ) {
+			arrowed(e.message)
+		}
+	}
+	
+	function generateData() {
+		for( var i = 0; i < 16; i++ ) {
+			var a = Math.floor(random() * datmax)
+			chara[i] = {
+				"i":a,
+				"ch":datnm[a],
+				"x":datx[a],
+				"nm":datnm[a].substring(0, datnm[a].indexOf(" ["))
+			}
+
+			for ( var j = 0; j < i; j++ ) {
+				if( chara[i].x == chara[j].x ) {
+					// we have a tie. we can't risk them meeting up. throw out the new guy
+					chara[i] = null;
+					break;
+				}
+				else if( chara[i].nm == chara[j].nm ) {
+					// as funny as it would be for the same character from different years to meet up
+					// we probably shouldn't allow it
+					chara[i] = null;
+					break
+				}
+			}
+			
+			if( chara[i] == null ) {
+				i--;
+			}
+		}
+	}
+	
+	function generateBracketObjects2() {
+		try {
+			var disable = " "
+			var m = 0
+			for( var round = 0; round < 4; round++ ) {
+				for( var match = 0; match < matchCount(round); match++ ) {
+					var text = ""
+					for( var choice = 0; choice < 2; choice++ ) {
+						text += 
+							("<input type='radio' id='rXYZ' name='rXY' value='Z'" + disable + "onclick='vote(X, Y, Z)' /><label for='rXYZ' id='chXYZ'>[select previous match]</label>")
+								.replaceAll("X", round)
+								.replaceAll("Y", match)
+								.replaceAll("Z", choice)
+
+						if( choice == 0 ) text += "<br/>"
+					}
+					document.getElementById("m" + m).innerHTML = text
+					m++;
+				}
+				disable = " disabled='true' "
+			}
+		}
+		catch( e ) {
+			arrowed(e);
+		}
+		
+	}
+	
+	/*
+	function generateBracketObjects() {
+		try {
+			var text = ""
+			for( var round = 0; round < 4; round++ ) {
+				text += "<p>"
+				// decide round
+				text += "<strong>"
+				switch( round ) {
+				case 0:
+					text += "BRACKET ROUND 1";
+					break;
+				case 1:
+					text += "BRACKET ROUND 2";
+					break;
+				case 2:
+					text += "BRACKET SEMI-FINALS";
+					break;
+				case 3:
+					text += "BRACKET FINALS";
+					break;
+				}
+				text += "</strong><br/>"
+
+				for( var match = 0; match < matchCount(round); match++ ) {
+					for( var choice = 0; choice < 2; choice++ ) {
+						text += 
+							("<input type='radio' id='rXYZ' name='rXY' value='Z' disabled='true' onclick='vote(X, Y, Z)' /><label for='rXYZ' id='chXYZ'>[select previous match]</label>"
+								.replaceAll("X", round)
+								.replaceAll("Y", match)
+								.replaceAll("Z", choice)
+							)
+						text += "<br/>"
+					}
+					text += "<br/>"
+				}
+				text += "</p>"
+				if( round == 0 ) {
+					text = text.replaceAll("disabled='true'","")
+				}
+			}
+			document.getElementById("theDamnBracket").innerHTML = text
+		}
+		catch( e ) {
+			arrowed(e);
+		}
+	}
+	*/
+	
+	function simulateBracket() {
+		// continuning to insist this is the best way to write this method
+		contestHistory(
+			chara[0].ch, 
+			chara[1].ch, 
+			chara[2].ch, 
+			chara[3].ch, 
+			chara[4].ch, 
+			chara[5].ch, 
+			chara[6].ch, 
+			chara[7].ch, 
+			chara[8].ch, 
+			chara[9].ch, 
+			chara[10].ch, 
+			chara[11].ch, 
+			chara[12].ch, 
+			chara[13].ch, 
+			chara[14].ch, 
+			chara[15].ch
+		)
+
+		var m1 = 0
+		var m2 = 0
+		for( var round = 0; round < 4; round++ ) {
+			switch( round ) {
+			case 0: m1 = 0; m2 = 0; break;
+			case 1: m1 = 0; m2 = 8; break;
+			case 2: m1 = 8; m2 = 12; break;
+			case 3: m1 = 12; m2 = 14; break;
+			}
+
+			for( var match = 0; match < matchCount(round); match++ ) {
+				var a; var b;
+				if( round == 0 ) {
+					a = m1
+					b = m1+1
+				}
+				else {
+					if( bracket[m1].win > 0 ) a = bracket[m1].i1; else a = bracket[m1].i2
+					if( bracket[m1+1].win > 0 ) b = bracket[m1+1].i1; else b = bracket[m1+1].i2
+				}
+				
+				bracket[m2] = {
+					"ch1":chara[a].ch,
+					"ch2":chara[b].ch,
+					"x1":chara[a].x,
+					"x2":chara[b].x,
+//					"x1":adjust(chara[a].x,chara[b].x),
+//					"x2":adjust(chara[b].x,chara[a].x),
+					"win":(chara[a].x - chara[b].x),
+					"i1":a,
+					"i2":b
+				};
+				formatMatch(bracket[m2])
+
+				bracket[m2].adjustWin = bracket[m2].v1 - bracket[m2].v2
+
+				m1 += 2
+				m2 += 1
+			}
+		}
+
+		for( var i = 0; i < 15; i += 4 ) {
+			var value = 0;
+			var bit = 1;
+			for( var j = 0; j < 4; j++ ) {
+				if( i+j < 15 ) {
+					value += (bracket[i+j].adjustWin > 0 ? bit : 0);
+				}
+				bit *= 2;
+			}
+			DEBUG_HASH += String.fromCharCode(65+value);
+		}
+
+		DEBUG_HASH += String.fromCharCode(15 + (bracket[14].v1 > 50 ? bracket[14].v1 : bracket[14].v2)) + ":"
+	}
+	
+	/*
+	function adjust(myVal, enemyVal) {
+		var val = Math.floor(
+			(myVal/(myVal+enemyVal)) * 10000
+		) / 100;
+		
+		if( val > 50 ) val += 0.01
+		
+		val = Math.floor(val * 100) / 100
+		
+		return val
+	}
+	*/
+	
+	function vote(round, match, choice) {
+		var nextRound = round + 1
+		var nextMatch
+		var nextChoice
+		// we could calculate this but fuck JS
+		switch( match ) {
+		case 0: nextMatch = 0; nextChoice = 0; break;
+		case 1: nextMatch = 0; nextChoice = 1; break;
+		case 2: nextMatch = 1; nextChoice = 0; break;
+		case 3: nextMatch = 1; nextChoice = 1; break;
+		case 4: nextMatch = 2; nextChoice = 0; break;
+		case 5: nextMatch = 2; nextChoice = 1; break;
+		case 6: nextMatch = 3; nextChoice = 0; break;
+		case 7: nextMatch = 3; nextChoice = 1; break;
+		}
+		
+		var oldId = getId(round, match, choice)
+		if( nextRound < 4 ) {
+			var newId = getId(nextRound, nextMatch, nextChoice)
+			document.getElementById("ch" + newId).innerHTML = document.getElementById("ch" + oldId).innerHTML
+			document.getElementById("r" + newId).disabled = false
+			if( document.getElementById("r" + newId).checked ) {
+				// pass it on
+				vote(nextRound, nextMatch, nextChoice)
+			}
+		}
+		
+		if( round == 0 && bonusGame == "turboFodder" ) {
+			var otherId = getId(round, match, choice == 0 ? 1 : 0)
+			document.getElementById("fodd" + match).innerHTML = document.getElementById("ch" + otherId).innerHTML
+		}
+	}
+	
+	function getId(round, match, choice) {
+		return round + '' + match + '' + choice
+	}
+	
+	function submitBracket() {
+		var validation = document.getElementById("invalidBracket");
+		validation.innerHTML = ""
+		
+		// validate the damn bracket
+		var i = 0
+		for( var round = 0; round < 4; round++ ) {
+			for( var match = 0; match < matchCount(round); match++ ) {
+				var id = "rXY".replace("X", round).replace("Y", match)
+				var id0 = id + "0"
+				var id1 = id + "1"
+				
+				if( !document.getElementById(id0).checked && !document.getElementById(id1).checked ) {
+					// TODO display character names
+					validation.innerHTML = "Your bracket is not finished"
+					return;
+				}
+				else {
+					bracket[i].choice = document.getElementById(id0).checked
+						? document.getElementById("ch" + getId(round, match, 0)).innerHTML
+						: document.getElementById("ch" + getId(round, match, 1)).innerHTML
+					;
+
+					var choice = null
+					if( bracket[i].choice == bracket[i].ch1 ) {
+						choice = false
+					}
+					else if( bracket[i].choice == bracket[i].ch2 ) {
+						choice = true
+					}
+					bracket[i].correct = (choice != null && choice == (bracket[i].win < 0))
+					//alert("Match " + i + "\nCorrect: " + bracket[i].correct + "\nChoice: " + choice + "\nBracket Win: " + (bracket[i].win < 0) + "\n\nChosen Person: " + bracket[i].choice + "\nMatch: " + bracket[i].ch1 + " v " + bracket[i].ch2)
+					
+					i++;
+				}
+			}
+		}
+		
+		// then validate the number that came out of the value
+		var per = document.getElementById("winPercent").value;
+		per = per.replace("%", "");
+		
+		if( isNaN(per) ) {
+			// i tore my [quad]
+			validation.innerHTML = "That isn't a percentage";
+			return;
+		}
+		else if( per <= 50.0 || per >= 100.0 ) {
+			validation.innerHTML = "Win Percentage should be between 50% and 100%";
+			return;
+		}
+		chosenPercent = per
+		
+		// now validate the bonus game's input
+		if( !validateBonusGame() ) return
+		
+		document.getElementById("activeGame").style.display = "none"
+		document.getElementById("runContest").style.display = ""
+		document.getElementById("exitButton").disabled = true
+		runMatch(0, 0)
+	}
+	
+	function runMatch(match, step) {
+		if( match == 15 ) {
+			endGame();
+			return;
+		}
+	
+		var nextMatch = match
+		var nextStep = step + 1
+		var timeout = 500
+		var dispMatch = match + 1
+
+		var text = "<br/>"
+		if( step == 0 ) {
+			// we don't actually need this, do we?
+			//text +=
+			//	"<strong>MATCH " + dispMatch + "</strong><br/>"
+			//	+ bracket[match].ch1 + "<br/>"
+			//	+ bracket[match].ch2
+			
+			text += buildMatchResult(bracket[match], dispMatch)
+		}
+		else if( step == 1 ) {
+			// TODO check if the player didn't pick someone in the match and adjust the text accordingly
+			text += getMatchResult(match)
+			
+			timeout = 1500
+			nextMatch = match + 1
+			nextStep = 0
+		}
+		document.getElementById("runContestResults").innerHTML = text
+		
+		if( testFlag ) timeout /= 100
+		else if( speedUp ) timeout /= 5
+
+		setTimeout(function() { runMatch(nextMatch, nextStep); }, timeout);
+	}
+	
+	function speedItUp() {
+		speedUp = true
+	}
+	
+	function getMatchResult(match) {
+		var xstats = (bracket[match].win < 0)
+		var choice = null
+		if( bracket[match].choice == bracket[match].ch1 ) {
+			choice = false
+		}
+		else if( bracket[match].choice == bracket[match].ch2 ) {
+			choice = true
+		}
+		
+		return buildMatchResult(bracket[match], (match+1), choice, xstats)
+	}
+	
+	function endGame() {
+		try {
+			document.getElementById("runContest").style.display = "none"
+			document.getElementById("exitButton").disabled = false
+			
+			var shareText = "#lolXBracket #" + gameNumber + "\n" + emoji
+			var shareText2 = "#lolXBracket #" + gameNumber + "\n" + emoji + " "
+			var resultText = ""
+			
+			var matchPointText = "<p><strong>The Damn Bracket</strong></br>"
+			
+			// score our run
+			var score = 0
+			var i = 0
+			for( var round = 0; round < 4; round++ ) {
+				var roundScore = 0
+				var val = 0
+				switch( round ) {
+				case 0: val = 1; break
+				case 1: val = 2; break
+				case 2: val = 4; break
+				case 3: val = 8; break
+				}
+				for( var match = 0; match < matchCount(round); match++ ) {
+					var text = getMatchResult(i)
+					resultText += text
+
+					if( bracket[i].correct ) {
+						roundScore += val
+						shareText2 += textBlock[0] + " "
+					}
+					else {
+						shareText2 += textBlock[1] + " "
+					}
+
+					//if( round == 0 ) {
+						var styl = ["",""]
+						
+						styl[(bracket[i].win < 0 ? 1 : 0)] = "winner"
+						
+						document.getElementById("me" + i).innerHTML = "<span class='" + styl[0] + "'>" + bracket[i].ch1 + "</span><br/>"
+							+ "<span class='" + styl[1] + "'>" + bracket[i].ch2 + "</span>"
+					//}
+					
+					i++
+				}
+				
+				if( round == 0 ) {
+					shareText2 += "\n"
+				}
+				
+				shareText += " " + numeric[roundScore]
+				score += roundScore
+				
+				if( round < 2 ) matchPointText += "Round " + (round+1)
+				else if( round == 2 ) matchPointText += "Semi-Finals"
+				else if( round == 3 ) matchPointText += "Finals"
+				matchPointText += ": " + roundScore + "/8</br>"
+			}
+			matchPointText += "<strong>Points Awarded: " + score + "/32</strong></p>"
+
+			// win percentage points
+			var realPercent = bracket[14].v1 > 50 ? bracket[14].v1 : bracket[14].v2
+			var dist = Math.floor(Math.abs(realPercent - chosenPercent) * 100) / 100
+			
+			var percentText = "<p><strong>Finals Win Percent: " + realPercent + "%</strong><br/>"
+				+ "Prediction Percent: " + chosenPercent + "%</br>"
+				+ "Off by " + dist + "%<br/>"
+			
+			var perPoints = 4;
+			while( dist >= 3 && perPoints > 0 ) {
+				dist -= 3;
+				perPoints--
+			}
+			percentText += "<strong>Points Awarded: " + perPoints + "/4</strong></p>"
+			score += perPoints
+			shareText += " " + numeric[perPoints]
+			
+			// do the bonus game
+			var bonus = {
+				"text":"<strong>Oops I forgot to make a game. Here's some points.</strong>",
+				"score":4
+			}
+			if( bonusGame == "ultimateLoser" ) {
+				bonus = playUltimateLoser()
+			}
+			else if( bonusGame == "turboFodder" ) {
+				bonus = playTurboFodder()
+			}
+			else if( bonusGame == "tannerGame" ) {
+				bonus = playTannerGame()
+			}
+			else if( bonusGame == "instantClassic" ) {
+				bonus = playInstantClassic()
+			}
+			else if( bonusGame == "fourPack" ) {
+				bonus = playFourPack()
+			}
+			else if( bonusGame == "nobleBuster" ) {
+				bonus = playNobleBuster()
+			}
+			
+			bonus.text += "<br/><strong>Points Awarded: " + bonus.score + "/4</strong></p>"
+			score += bonus.score
+			
+			//shareText += " " + numeric[bonus.score]
+			shareText += " "
+			if( bonus.score == 4 ) {
+				shareText += textBlock[0]
+			}
+			else if( bonus.score == 0 ) {
+				shareText += textBlock[1]
+			}
+			else {
+				shareText += textBlock[3]
+			}
+			
+			// write score
+			shareText += " " + score + "/40"
+			
+			document.getElementById("scoreResults").innerHTML = matchPointText + percentText + bonus.text
+			document.getElementById("matchResults").innerHTML = resultText
+			
+			//document.getElementById("xstatsResults").innerHTML = matchPointText + resultText
+			document.getElementById("shareable").value = shareText
+			document.getElementById("points").innerHTML = score
+		
+			document.getElementById("endedGame").style.display = ""
+		}
+		catch( e ) {
+			arrowed(e.message)
+		}
+	}
+	
+	function playUltimateLoser() {
+		var loser = getLosers()
+		var loserText = "<p><strong>Ultimate Loser:</strong><br/>"
+			+ "<span class='finePrint'>You get a point for choosing each correct winner on the chain.</span>"
+		var loseColor = " "
+		
+		for( var i = 0; i < 5; i++ ) {
+			if( loser.losePoint < 4 && loser.losePoint == i ) loseColor = " style='color:red'"
+			
+			loserText += "<br/><span" + loseColor + ">"
+			if( i > 0 ) loserText += "&gt; "
+			loserText += loser.list[i] + "</span>"
+		}
+		
+		return {
+			"text":loserText,
+			"score":loser.losePoint
+		}
+	}
+	
+	function getLosers() {
+		// okay this method is actually nonsense
+		var loser = {
+			"list":[],
+			"losePoint":0
+		}
+		
+		var stillPick = true
+		
+		// round 4
+		if( bracket[14].win < 0 ) {
+			loser.list[0] = bracket[14].ch2
+			loser.list[1] = bracket[14].ch1
+			if( bracket[14].choice == bracket[14].ch2 ) {
+				loser.losePoint++
+			}
+			else {
+				stillPick = false;
+			}
+		}
+		else {
+			loser.list[0] = bracket[14].ch1
+			loser.list[1] = bracket[14].ch2
+			if( bracket[14].choice == bracket[14].ch1 ) {
+				loser.losePoint++
+			}
+			else {
+				stillPick = false;
+			}
+		}
+		
+		// round 3
+		for( var match = 12; match < 14; match++ ) {
+			if( bracket[match].ch1 == loser.list[1] ) {
+				loser.list[2] = bracket[match].ch2
+				if( stillPick && bracket[match].ch1 == bracket[match].choice ) {
+					loser.losePoint++
+				}
+				else {
+					stillPick = false
+				}
+			}
+			else if( bracket[match].ch2 == loser.list[1] ) {
+				loser.list[2] = bracket[match].ch1
+				if( stillPick && bracket[match].ch2 == bracket[match].choice ) {
+					loser.losePoint++
+				}
+				else {
+					stillPick = false
+				}
+			}
+		}
+		
+		// round 2
+		for( var match = 8; match < 12; match++ ) {
+			if( bracket[match].ch1 == loser.list[2] ) {
+				loser.list[3] = bracket[match].ch2
+				if( stillPick && bracket[match].ch1 == bracket[match].choice ) {
+					loser.losePoint++
+				}
+				else {
+					stillPick = false
+				}
+			}
+			else if( bracket[match].ch2 == loser.list[2] ) {
+				loser.list[3] = bracket[match].ch1
+				if( stillPick && bracket[match].ch2 == bracket[match].choice ) {
+					loser.losePoint++
+				}
+				else {
+					stillPick = false
+				}
+			}
+		}
+
+		// round 1
+		for( var match = 0; match < 7; match++ ) {
+			if( bracket[match].ch1 == loser.list[3] ) {
+				loser.list[4] = bracket[match].ch2
+				if( stillPick && bracket[match].ch1 == bracket[match].choice ) {
+					loser.losePoint++
+				}
+				else {
+					stillPick = false
+				}
+			}
+			else if( bracket[match].ch2 == loser.list[3] ) {
+				loser.list[4] = bracket[match].ch1
+				if( stillPick && bracket[match].ch2 == bracket[match].choice ) {
+					loser.losePoint++
+				}
+				else {
+					stillPick = false
+				}
+			}
+		}
+		
+		return loser
+	}
+	
+	function playTurboFodder() {
+		var fodderText = "<p><strong>TURBO FODDER</strong>"
+		var fodderScore = 0
+		
+		// decide the turbo fodder
+		var x = []
+		for( var i = 0; i < 16; i++ ) {
+			x[i] = chara[i].x
+		}
+		x.sort(function(a, b) { return a - b; }) // why does a language not have a built-in numeric sort
+		var c = []
+		for( var i = 0; i < 4; i++ ) {
+			for( var j = 0; j < 16; j++ ) {
+				if( x[i] == chara[j].x ) {
+					fodderText += "<br/>["+i+"]" + (i+1) + ": " + chara[j].ch + " (" + chara[j].x + "%)"
+					c[i] = chara[j]
+					break;
+				}
+			}
+		}
+		
+		// now figure out who we chose
+		var ourChoice;
+		var ourX;
+		for( var i = 0; i < 8; i++ ) {
+			if( document.getElementById("fod"+i).checked ) {
+				ourChoice = document.getElementById("fodd"+i).innerHTML
+				for( var j = 0; j < 16; j++ ) {
+					if( ourChoice == chara[j].ch ) {
+						ourX = chara[j].x;
+						break
+					}
+				}
+				break;
+			}
+		}
+		
+		// line it up
+		for( var i = 0; i < 4; i++ ) {
+			var rep = "["+i+"]"
+			if( ourChoice == c[i].ch ) {
+				fodderText = fodderText.replace(rep,answer[0])
+				fodderScore = 4 - i
+			}
+			else {
+				fodderText = fodderText.replace(rep,"")
+			}
+		}
+		
+		if( fodderScore == 0 ) {
+			// nah you blew it
+			fodderText += "<br/>" + answer[1] + ourChoice + " (" + ourX + "%)"
+		}
+	
+		return {
+			"text":fodderText,
+			"score":fodderScore
+		}
+	}
+	
+	function playTannerGame() {
+		// pull up tanner's x-stat
+		var tannerIndex = 0
+		var tannerX = 0.01
+		for( var i = 0; i < datmax; i++ ) {
+			if( datnm[i].indexOf("Tanner") > -1 ) {
+				tannerIndex = i
+				tannerX = datx[i];
+				break;
+			}
+		}
+
+		var winner = bracket[14].v1 > 50 ? bracket[14].i1 : bracket[14].i2;
+		
+		var bonusMatch = {
+			"ch1":chara[winner].ch,
+			"ch2":datnm[tannerIndex],
+			//"x1":adjust(chara[winner].x,tannerX),
+			//"x2":adjust(tannerX,chara[winner].x),
+			"x1":chara[winner].x,
+			"x2":tannerX,
+			"win":(chara[winner].x - tannerX)
+		};
+		formatMatch(bonusMatch)
+		
+		var dist = Math.floor(Math.abs(bonusMatch.v1 - tannerPercent) * 100) / 100
+		
+		var percentText = "<p><strong>T4NN3R B0NU5</strong><br/>"
+			+ buildMatchResult(bonusMatch) + "<br/>"
+			+ "Prediction Percent: " + tannerPercent + "%</br>"
+			+ "Off by " + dist + "%"
+		
+		var perPoints = 4;
+		while( dist >= 3 && perPoints > 0 ) {
+			dist -= 3;
+			perPoints--
+		}
+		
+		return {
+			"text":percentText,
+			"score":perPoints
+		}
+	}
+	
+	function playInstantClassic() {
+		var classicText = "<p><strong>INSTANT CLASSIC</strong>"
+		var classicScore = 0
+
+		var bonusMatch = bracket[classicMatch]
+		var winner = bonusMatch.win > 0 ? bonusMatch.ch1 : bonusMatch.ch2
+		var diff;
+		
+		if( gameNumber == 1 ) {
+			diff = getDifficulty(bonusMatch.win)
+		}
+		else {
+			diff = getNewDifficulty(bonusMatch.x1, bonusMatch.x2)
+		}
+		
+		// show the information
+		classicText += "<br/><strong>MATCH WINNER</strong>: " + winner
+			+ "<br/><strong>DIFFICULTY</strong>: " + diff
+			+ "<br/><strong>Your Choice</strong>: "
+		
+		// see what we chose
+		if( document.getElementById("classicW").checked ) {
+			classicText += "Choose the Winner "
+			if( winner == bonusMatch.choice ) {
+				classicScore = 4
+				classicText += "[CORRECT]"
+			}
+			else {
+				classicScore = 0
+				classicText += "[WRONG]"
+				if( diff.indexOf("LEGENDARY") > -1 ) {
+					classicScore = 1
+					classicText += "<br/><span class='finePrint'>Because the match was Legendary, trying to call the winner still earned you 1 drama point.</span>"
+				}
+			}
+		}
+		else if( document.getElementById("classicY").checked ) {
+			classicText += "Instant Classic "
+			if( diff.indexOf("LEGENDARY") > -1 ) {
+				classicScore = 4
+				classicText += "[CORRECT]"
+			}
+			else if( diff.indexOf("Very Hard") > -1 ) {
+				classicScore = 3
+				classicText += "[PARTIAL CREDIT]"
+			}
+			else {
+				classicScore = 0
+				classicText += "[WRONG]"
+			}
+		}
+		else {
+			classicScore = 2
+			classicText += "No Choice [AT LEAST YOU WEREN'T WRONG]"
+		}
+		
+		return {
+			"text":classicText,
+			"score":classicScore
+		}
+	}
+	
+	function getCurrentDay() {
+		var startYear = 2025
+		var startMonth = 8 - 1
+		var startDay = 31
+		
+		var day = 7
+		var week = 1
+		var d = new Date()
+		
+		var terminus = Date.UTC(startYear, startMonth, startDay);
+		var today = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+		//var today = Date.UTC(2025, 9-1, 6)
+		
+		if( today < terminus ) {
+			arrowed("system clock")
+			return 0
+		}
+		while( today > terminus ) {
+			terminus = Date.UTC(startYear, startMonth, startDay + day);
+			day += 7
+			if( today >= terminus ) week += 1
+		}
+		
+		return week
+	}
+	
+	function generateToday() {
+		try {
+			var day = getCurrentDay();
+			document.getElementById("arbitrary").value = day
+			generateGame(day)
+		}
+		catch( e ) {
+			arrowed(e.message)
+		}
+	}
+	
+	function matchCount(round) {
+		switch( round ) {
+		case 0: return 8;
+		case 1: return 4;
+		case 2: return 2;
+		case 3: return 1;
+		}
+		arrowed("matchCount")
+	}
+	
+	function chooseBonusGame() {
+		document.getElementById("ultimateLoser").style.display = "none"
+		document.getElementById("turboFodder").style.display = "none"
+		document.getElementById("tannerGame").style.display = "none"
+		document.getElementById("nobleBuster").style.display = "none"
+		document.getElementById("fourPack").style.display = "none"
+		document.getElementById("instantClassic").style.display = "none"
+		
+		var r = random()
+		
+		// chances:
+		// NobleBuster - has its own criteria
+		// new numbers (decrease chance of Ultimate Loser because that game is actually boring; why is it even in the game)
+		// Four Pack       = 25
+		// Turbo Fodder    = 25 (50)
+		// Instant Classic = 25 (75)
+		// Tanner Game     = 15 (90)
+		// Ultimate Loser  = 10 (10)
+
+		// old number
+		// Four Pack       = 25
+		// Ultimate Loser  = 22 (47)
+		// Turbo Fodder    = 22 (69)
+		// Instant Classic = 21 (90)
+		// Tanner Game     = 10 (100)
+
+		// hand-craft the first 10 weeks (technically noble buster isn't handcrafted)
+		if( gameNumber > 0 && gameNumber <= 10 ) {
+			// give the players a taste of all the bonus games to start out
+			var earlyRand = gameNumber % 6;
+			switch( earlyRand ) {
+			case 1: r = 0.74; break // instant classic
+			case 2: r = 0.24; break // four pack
+			case 3: r = 0.49; break // turbo fodder
+			case 4: r = 0.89; break // tanner's game
+			case 5: r = 0.99; break // ultimate loser
+			case 0: break; // noble buster should automatically come up here
+			}
+		}
+
+		if( nobleBuster(random()) ) {
+			// there are specific requirements to make Noble Buster show up
+			bonusGame = "nobleBuster"
+			document.getElementById("noblerN").checked = true
+			DEBUG_HASH += "N" + (nobleBusted ? "B" : "J")
+		}
+		else if( r < 0.25 ) {
+			bonusGame = "fourPack"
+			generateFourPack()
+			DEBUG_HASH += "P" + "TODO"
+		}
+		else if( r < 0.50 ) {
+			bonusGame = "turboFodder"
+			document.getElementById("fod0").checked = true
+
+			for( var i = 0; i < 8; i++ ) {
+				document.getElementById("fodd"+i).innerHTML = "[finish Round 1]"
+			}
+			DEBUG_HASH += "F" + "TODO"
+		}
+		else if( r < 0.75 ) {
+			bonusGame = "instantClassic"
+			document.getElementById("classicW").checked = true
+			// prepare the characters
+			classicMatch = 0
+			for( var match = 1; match < 8; match++ ) {
+				if( gameNumber == 1 ) {
+					if( Math.abs(bracket[match].win) < Math.abs(bracket[classicMatch].win) ) {
+						classicMatch = match
+					}
+				}
+				else {
+					if( Math.abs(bracket[match].adjustWin) < Math.abs(bracket[classicMatch].adjustWin) ) {
+						classicMatch = match
+					}
+				}
+			}
+			// write in the characters from the match
+			document.getElementById("classicChar").innerHTML = 
+				chara[bracket[classicMatch].i1].nm + " vs " + chara[bracket[classicMatch].i2].nm
+			
+			if( gameNumber == 1 ) {
+				document.getElementById("ic_patch0").style.display = ""
+				document.getElementById("ic_patch1").style.display = "none"
+			}
+			else {
+				document.getElementById("ic_patch0").style.display = "none"
+				document.getElementById("ic_patch1").style.display = ""
+			}
+			DEBUG_HASH += "C" + "TODO"
+		}
+		else if( r < 0.90 ) {
+			bonusGame = "tannerGame"
+			document.getElementById("tannerPercent").value = "50"
+			DEBUG_HASH += "T" + "TODO"
+		}
+		else {
+			bonusGame = "ultimateLoser"
+			DEBUG_HASH += "L"
+		}
+		
+		document.getElementById(bonusGame).style.display = ""
+	}
+	
+	function validateBonusGame() {
+		var validation = document.getElementById("invalidBracket");
+		
+		if( bonusGame == "nobleBuster" ) {
+			// make sure our choice is based on our bracket
+			var nobleN = document.getElementById("noblerN").checked;
+			var nobleY = document.getElementById("noblerY").checked;
+
+			var projectNobleBuster = null
+			var projectNobleLoser = null
+			
+			// don't use bracket object for projections
+			for( var round = 0; round < 4; round++ ) {
+				for( var match = 0; match < matchCount(round); match++ ) {
+					var datTop = document.getElementById("r" + getId(round, match, 0)).checked
+					var ch1 = document.getElementById("ch" + getId(round, match, 0)).innerHTML
+					var ch2 = document.getElementById("ch" + getId(round, match, 1)).innerHTML
+					var noble1 = isNoble(ch1)
+					var noble2 = isNoble(ch2)
+					if( noble1 != noble2 ) {
+						if( noble1 && !datTop ) {
+							projectNobleBuster = ch2
+							projectNobleLoser = ch1
+							break;
+						}
+						else if( noble2 && datTop ) {
+							projectNobleBuster = ch1
+							projectNobleLoser = ch2
+							break;
+						}
+					}
+				}
+				if( projectNobleBuster != null ) break
+			}
+
+			if( nobleN && projectNobleBuster != null ) {
+				projectNobleBuster = projectNobleBuster.substring(0,projectNobleBuster.indexOf(" ["));
+				projectNobleLoser = projectNobleLoser.substring(0,projectNobleLoser.indexOf(" ["));
+				validation.innerHTML = "Your decision in Casual Revolution does not match your bracket.<br/>You have " + projectNobleLoser + " losing to " + projectNobleBuster + "."
+				return false
+			}
+			else if( nobleY && projectNobleBuster == null ) {
+				validation.innerHTML = "Your decision in Casual Revolution does not match your bracket.<br/>The Noble Nine is not losing to anyone outside of it."
+				return false
+			}
+		}
+		else if( bonusGame == "ultimateLoser" ) {
+			// automatic
+		}
+		else if( bonusGame == "turboFodder" ) {
+			// something is guaranteed selected
+		}
+		else if( bonusGame == "fourPack" ) {
+			for( var match = 0; match < 3; match++ ) {
+				if( !document.getElementById("for" + match + "0").checked && !document.getElementById("for" + match + "1").checked ) {
+					validation.innerHTML = "Four Pack is not finished"
+					return false
+				}
+			}
+		}
+		else if( bonusGame == "tannerGame" ) {
+			var per = document.getElementById("tannerPercent").value;
+			per = per.replace("%", "");
+			if( isNaN(per) ) {
+				validation.innerHTML = "Tanner Percentage isn't a percentage";
+				return false
+			}
+			else if( per <= 50.0 || per >= 100.0 ) {
+				validation.innerHTML = "Tanner Percentage should be between 50% and 100% (but probably closer to 100%)";
+				return false
+			}
+			
+			tannerPercent = per
+		}
+		else if( bonusGame == "instantClassic" ) {
+			// something is guaranteed selected
+		}
+		
+		return true
+	}
+	
+	function generateFourPack() {
+		try {
+			var fourChar = []
+			for( var i = 0; i < 4; i++ ) {
+				// add an iteration so we can decide to throw out characters that would make the four-pack too easy
+				for( var z = 0; z < 4; z++ ) {
+					var match = (i * 4)
+					var rand = Math.floor((z + (bracket[match].x1 * 100)) % 4) // take a "random" seed (also i hate doubles)
+					fourChar[i] = chara[match + rand]
+
+					if( gameNumber == 2 ) break // week 2 had Link. that was dumb
+
+					if( fourChar[i].x > 40 ) continue; // remove high powered characters
+					if( fourChar[i].x < 10 ) continue; // remove turbo fodder
+					
+					break;
+				}
+			}
+			//document.getElementById("four0").innerHTML = fourPack[0].ch + "<br/>" + fourPack[1].ch
+			//document.getElementById("four1").innerHTML = fourPack[2].ch + "<br/>" + fourPack[3].ch
+			
+			fourPack = []
+			
+			// run the matches
+			var disable = " "
+			var onclick = "onclick='voteFour(X, Z)'"
+			for( var match = 0; match < 3; match++ ) {
+				var a; var b;
+				if( match < 2 ) {
+					a = (match*2)
+					b = (match*2)+1
+				}
+				else {
+					if( fourPack[0].win > 0 ) a = 0; else a = 1
+					if( fourPack[1].win > 0 ) b = 2; else b = 3
+					disable = "disabled='true'"
+					onclick = ""
+				}
+				
+				fourPack[match] = {
+					"ch1":fourChar[a].ch,
+					"ch2":fourChar[b].ch,
+					//"x1":adjust(fourChar[a].x,fourChar[b].x),
+					//"x2":adjust(fourChar[b].x,fourChar[a].x),
+					"x1":fourChar[a].x,
+					"x2":fourChar[b].x,
+					"win":(fourChar[a].x - fourChar[b].x),
+					"i1":a,
+					"i2":b
+				};
+				formatMatch(fourPack[match])
+				
+				var text = ""
+				for( var choice = 0; choice < 2; choice++ ) {
+					text += 
+						("<input type='radio' id='forXZ' name='forX' value='Z'" + disable + onclick + " /><label for='forXZ' id='forchXZ'>[select previous match]</label>")
+							.replaceAll("X", match)
+							.replaceAll("Z", choice)
+
+					if( choice == 0 ) text += "<br/>"
+				}
+				document.getElementById("four" + match).innerHTML = text
+			}
+			
+			for( var i = 0; i < 4; i++ ) {
+				document.getElementById(
+					"forchXZ".replace("X",Math.floor(i/2)).replace("Z",i % 2)
+				).innerHTML = fourChar[i].ch
+			}
+		}
+		catch( e ) {
+			arrowed(e);
+		}
+	}
+	
+	function voteFour(match, choice) {
+		var oldId = "forch" + match + choice
+		var newId = (match == 0) ? "20" : "21"
+		document.getElementById("forch" + newId).innerHTML = document.getElementById(oldId).innerHTML
+		document.getElementById("for" + newId).disabled = false
+	}
+
+	function playFourPack() {
+		var fourText = "<p><strong>FOUR PACK</strong>"
+		var fourScore = 0
+		
+		for( var match = 0; match < 3; match++ ) {
+			// check the chosen winner
+			var xstats = (fourPack[match].win < 0)
+			var choice = null
+			if( document.getElementById("for"+match+"0").checked ) {
+				fourPack[match].choice = document.getElementById("forch" + match + "0").innerHTML 
+				if( fourPack[match].choice == fourPack[match].ch1 ) {
+					choice = false
+				}
+			}
+			else {
+				fourPack[match].choice = document.getElementById("forch" + match + "1").innerHTML 
+				if( fourPack[match].choice == fourPack[match].ch2 ) {
+					choice = true
+				}
+			}
+			
+			if( choice == xstats ) {
+				fourScore++;
+				if( match == 2 ) fourScore++
+			}
+			
+			if( match != 0 ) fourText += "<br/>"
+			fourText += "<br/><strong>Four-Pack Match " + (match+1) + "</strong><br/>" + buildMatchResult(fourPack[match], 0, choice, xstats)
+		}
+		
+		return {
+			"text":fourText,
+			"score":fourScore
+		}
+	}
+	
+	function tryGenerateGame() {
+		var validation = document.getElementById("invalidGame");
+		validation.innerHTML = ""
+		
+		var game = document.getElementById('arbitrary').value
+		var currentDay = getCurrentDay()
+		if( game > currentDay ) {
+			// what are you trying to pull
+			validation.innerHTML = "This week hasn't unlocked yet. Current week is " + currentDay + ".";
+		}
+		else if( isNaN(game) ) {
+			// i tore my [quad]
+			validation.innerHTML = "Please type a number. Current week is " + currentDay + ".";
+		}
+		else {
+			if( game <= 0 ) {
+				validation.innerHTML = "Negative/zero games are consistent if multiple people pick them at the same time, but will change as I make updates.";
+			}
+			generateGame(+game);
+		}
+	}
+
+	function isNoble(name) { 
+		if( name.indexOf(" [") > -1 ) {
+			name = name.substring(0, name.indexOf(" ["));
+		}
+
+		switch( name ) {
+		case "Link":
+		case "Cloud":
+		case "Sephiroth":
+		case "Mario":
+		case "Samus":
+		case "Sonic":
+		case "Mega Man":
+		case "Snake":
+		case "Crono":
+			return true
+		default:
+			return false
+		}
+	}
+	
+	
+	function nobleBuster(rng) {
+		var debug = false
+		
+		var noble = []
+		var nobleUnder50 = false
+		for( var ch = 0; ch < 16; ch++ ) {
+			noble[ch] = isNoble(chara[ch].nm);
+
+			if( chara[ch].x == 50 ) {
+				// ensure there is no non-noble with 50% RAW (Draven, L-Block) - this would be too esay
+				if( !noble[ch] ) {
+					if( debug ) alert("reddit fucks the bracket")
+					return false;
+				}
+			}
+			else {
+				// ensure there is a noble in the bracket with less than 50% RAW
+				if( noble[ch] ) nobleUnder50 = true
+			}
+		}
+		
+		if( !nobleUnder50 ) { 
+			if( debug ) alert("no nobles under 50 found")
+			return false
+		}
+		
+		// assuming no disqualifying conditions, take RAW WIN of the closest noble vs non-noble match
+		nobleBusted = false
+		var rawNobleWin = 50
+		for( var match = 0; match < 15; match++ ) {
+			var n1 = noble[bracket[match].i1]
+			var n2 = noble[bracket[match].i2]
+			if( n1 != n2 ) {
+				// ensure there is no match booked where a noble loses by more than 7.0% (RAW WIN) to a non-noble (why is Crono even here?!)
+				var win = bracket[match].win
+				if( (n1 && win < 0) || (n2 && win > 0) ) {
+					// the noble nine has been busted
+					if( !nobleBusted ) {
+						nobleBusted = true
+						nobleLoser = (win < 0) ? chara[bracket[match].i1].nm : chara[bracket[match].i2].nm
+					}
+					// this isn't really needed, is it?
+					/*
+					if( Math.abs(win) > 7 ) {
+						if( debug ) alert("crono blew it again")
+						return false
+					}
+					*/
+				}
+				win = Math.abs(win)
+				if( rawNobleWin > win ) rawNobleWin = win
+			}
+		}
+		
+		// - if the closest match is beyond 5.0%: 2% chance of noble buster
+		// - if the closest match is within 5.0%: 10% chance of noble buster
+		// - if the closest match is within 2.9% (Very Hard): 50% chance of noble buster
+		// - if the closest match is within 1.4% (Legendary): 90% chance of noble buster (this percentage chosen to make it show up Week 6)
+		var chance = 0.02
+		if( rawNobleWin <= 1.4 ) {
+			chance = 0.90
+		}
+		else if( rawNobleWin < 2.9 ) {
+			chance = 0.50
+		}
+		else if( rawNobleWin < 5.0 ) {
+			chance = 0.10
+		}
+		if( debug ) alert("noble chance = " + chance)
+
+		return rng < chance;
+	}
+	
+	function playNobleBuster() {
+		var nobleText = "<p><strong>CASUAL REVOLUTION</strong>"
+		var nobleScore = 0
+		
+		nobleText += "<br/><strong>THE NOBLE NINE "
+		nobleText += (nobleBusted ? ("DIES WITH " + nobleLoser.toUpperCase()) + "!" : "LIVES!")
+		nobleText += "</strong>"
+		
+		// check our choice
+		nobleText += "<br/><strong>Your Choice</strong>: "
+		var nobleN = document.getElementById("noblerN").checked;
+		var nobleY = document.getElementById("noblerY").checked;
+		if( nobleN || nobleY ) {
+			if( nobleN ) {
+				nobleText += "Noble Nine Lives"
+			}
+			else {
+				nobleText += "Noble Nine Dies"
+			}
+		
+			if( (nobleY && nobleBusted) || (nobleN && !nobleBusted) ) {
+				nobleText += " [CORRECT]"
+				nobleScore = 4
+			}
+			else {
+				nobleText += " [WRONG]"
+				nobleScore = 0
+			}
+		}
+		else {
+			nobleText += "No Choice [AT LEAST YOU WEREN'T WRONG]"
+			nobleScore = 2
+		}
+		
+		return {
+			"text":nobleText,
+			"score":nobleScore
+		}
+	}
+	
+	function arrowed(msg) {
+		document.getElementById("game").style.display = "none"
+		document.getElementById("error").style.display = ""
+		document.getElementById("error").innerHTML = "argh i tore my " + msg
+	}
+	
+	function test() {
+		testFlag = true
+		var x = 0
+		for( var round = 0; round < 4; round++ ) {
+			for( var match = 0; match < matchCount(round); match++ ) {
+				//vote(round, match, x);
+				document.getElementById("r" + getId(round, match, x)).checked = true
+				vote(round, match, x)
+				x = (x + 1) % 2
+			}
+		}
+		
+		document.getElementById("winPercent").value = "70"
+		submitBracket()
+	}
+	
+	function test2() {
+		var first = ""
+		var ultimateLoser = 0
+		var turboFodder = 0
+		var tannerGame = 0
+		var nobleBuster = 0
+		var fourPack = 0
+		var instantClassic = 0
+		for( var i = 1; i <= 100; i++ ) {
+			generateGame(i);
+			switch( bonusGame ) {
+			case "ultimateLoser":
+				ultimateLoser++
+				break
+			case "turboFodder":
+				turboFodder++
+				break
+			case "tannerGame":
+				tannerGame++
+				break
+			case "nobleBuster":
+				if( nobleBuster == 0 ) first += "First Casual Revolution: " + i
+				nobleBuster++
+				break
+			case "fourPack":
+				fourPack++
+				break
+			case "instantClassic":
+				instantClassic++
+				break
+			}
+		}
+		alert(
+			"nobleBuster=" + nobleBuster + "\n" +
+			"ultimateLoser=" + ultimateLoser + "\n" +
+			"turboFodder=" + turboFodder + "\n" +
+			"fourPack=" + fourPack + "\n" +
+			"instantClassic=" + instantClassic + "\n" +
+			"tannerGame=" + tannerGame + "\n\n" +
+			first
+		)
+	}
+	
+	generateToday();
+	document.getElementById("game").style.display = ""
+	runGameList("bracket");
+
+</script>
+
+</body>
+</html>

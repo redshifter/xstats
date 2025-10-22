@@ -1,0 +1,358 @@
+<html>
+<head>
+<title>LOL X-Statsle</title>
+
+<link rel="stylesheet" type="text/css" href="styl.css" />
+
+<meta property="og:title" content="LOL X-Statsle" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="The daily X-Stats game. Why though?" />
+
+</head>
+<body>
+<div id="noscript">
+	<p>Oops, you turned off JavaScript<noscript> (or NoScript is getting in the way)</noscript>.</p>
+	<p>Challenge again.</p>
+</div>
+<div id="error" style="display:none">
+</div>
+<div id="game" style="display:none">
+	<span class="title">LOL X-STATSLE #<span id="number"></span></span>
+	<br/>
+	A new game every day (use UTC time).
+	
+	<p id="results"></p>
+	<p>
+		Directions: Simply pick the character who would get more votes on an outdated Internet website.
+	</p>
+	<p class="finePrint">I used the unadjusted stats because I have no idea where to find the good ones. Eh I'm sure it'll be fine.</p>
+	<p id="activeGame">
+		<input type="button" id="topOp" value="Summer 2002 Link" onclick="datTopOption()" class="butt" />
+		vs 
+		<input type="button" id="bottomOp" value="Summer 2004 Tanner" onclick="bottomOption()" class="butt" />
+	</p>
+	<div id="contestInfo">
+	</div>
+	
+	<div id="endedGame" style="display:none">
+		<p>You got <span id="correct"></span> of 6 right. <span id="funnySaying"></span></p>
+		<textarea id="shareable" readonly="true" cols="30" rows="4">#lolXStats #1\r\nLine 2</textarea>
+		<div id="xstatsResults"></div>
+	</div>
+	<div>
+		<br/>
+		<br/>
+		<p>Play a different day?</p>
+		<p>
+			<input type="input" id="arbitrary" style="width:60px" />
+			<input type="button" value="Play Game" onclick="tryGenerateGame()" />
+		</p>
+		<p id="invalidGame" class="finePrint"></p>
+	</div>
+	<div id="gameList">
+	</div>
+</div>
+<script type="text/javascript" src="rng.js"></script>
+<script type="text/javascript" src="dat.js"></script>
+<script type="text/javascript" src="override.js"></script>
+<script type="text/javascript" src="contestHistory.js"></script>
+<script type="text/javascript" src="gameList.js"></script>
+<script type="text/javascript" src="utility.js"></script>
+<script>
+	document.getElementById("noscript").style.display = "none"
+	document.getElementById("error").style.display = ""
+	document.getElementById("error").innerHTML = "argh i tore my JS compiler"
+</script>
+<script>
+	document.getElementById("error").style.display = "none"
+	var text = ["🟩","🟥","⬜"]
+	//var answer = ["✔️", "❌"]
+	var emoji = "✘"
+
+	var gameNumber = 0
+	var match = 0
+	var matches = []
+	var correct = 0
+	
+	function tryGenerateGame() {
+		var validation = document.getElementById("invalidGame");
+		validation.innerHTML = ""
+		
+		var game = document.getElementById('arbitrary').value
+		var currentDay = getCurrentDay()
+		if( game > currentDay ) {
+			// what are you trying to pull
+			validation.innerHTML = "This day hasn't unlocked yet. Current day is " + currentDay + ".";
+		}
+		else if( isNaN(game) ) {
+			// i tore my [quad]
+			validation.innerHTML = "Please type a number. Current day is " + currentDay + ".";
+		}
+		else {
+			if( game <= 0 ) {
+				validation.innerHTML = "Negative/zero games are consistent if multiple people pick them at the same time, but will change as I make updates.";
+			}
+			generateGame(game);
+		}
+	}
+	
+	function getCurrentDay() {
+		var startYear = 2025
+		var startMonth = 8 - 1
+		var startDay = 30
+		
+		var day = 1
+		var d = new Date()
+		
+		var terminus = Date.UTC(startYear, startMonth, startDay);
+		var today = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+		
+		if( today < terminus ) {
+			arrowed("system clock")
+			return 0
+		}
+		while( today > terminus ) {
+			terminus = Date.UTC(startYear, startMonth, startDay + day);
+			day += 1
+		}
+		
+		return day
+	}
+	
+	function generateToday() {
+		try {
+			var day = getCurrentDay();
+			document.getElementById("arbitrary").value = day
+			generateGame(day)
+		}
+		catch( e ) {
+			arrowed(e.message)
+		}
+	}
+	
+
+	function generateGame(number) {
+		try {
+			document.getElementById("activeGame").style.display = ""
+			document.getElementById("endedGame").style.display = "none"
+			
+			matches = []
+			correct = 0
+			match = 0
+			
+			gameNumber = number
+			document.getElementById("number").innerHTML = number
+			seedRandom(number);
+			
+			// make results
+			var results = document.getElementById("results")
+			results.innerHTML = ""
+			for( var i = 0; i < 6; i++ ) {
+				results.innerHTML += "<span id='r" + i + "'>" + text[2] + "</span> "
+			}
+			
+			document.getElementById("xstatsResults").innerHTML = ""
+			
+			// start pulling things
+			//var gen = sampleData();
+			if( override[number] == null ) {
+				matches = generateDailyData();
+				// change this to two-in-one
+				//var gen = generateData();
+				//matches = sortData(gen)
+			}
+			else {
+				for( var i = 0; i < 6; i++ ) {
+					matches[i] = override[number][i]
+					matches[i] = formatMatch(matches[i])
+				}
+			}
+			
+			// start the game
+			document.getElementById("game").style.display = ""
+			match = 0
+			//initMatch()
+			startMatch(matches[match]);
+		}
+		catch( e ) {
+			arrowed(e.message)
+		}
+	}
+	
+	/*
+	function initMatch() {
+		var button = [
+			document.getElementById("topOp"),
+			document.getElementById("bottomOp")
+		]
+
+		button[0].value = matches[match].ch1
+		button[1].value = matches[match].ch2
+		
+		for( var i = 0; i < 2; i++ ) {
+			button[i].style.backgroundColor = randomColor()
+		}
+		
+		contestHistory(matches[match].ch1, matches[match].ch2);
+	}
+	*/
+	
+	function randomColor() {
+		var x = "#"
+		for( var i = 0; i < 3; i++ ) {
+			var a = Math.floor(random() * 8) + 8
+			var b = Math.floor(random() * 16)
+			x += a.toString(16) + b.toString(16)
+		}
+		return x
+	}
+	
+	function vote(option) {
+		try {
+			var choice = (option < 0)
+			var xstats = (matches[match].win < 0)
+			
+			var resultBox = document.getElementById("r" + match)
+			
+			//var box1 = ""
+			//var box2 = ""
+			
+			if( choice == xstats ) {
+				//if( choice ) box2 = answer[0]; else box1 = answer[0];
+				resultBox.innerHTML = text[0]
+				correct++
+			}
+			else {
+				//if( choice ) box2 = answer[1]; else box1 = answer[1];
+				resultBox.innerHTML = text[1]
+			}
+			resultBox.innerHTML += " "
+
+			document.getElementById("xstatsResults").innerHTML +=
+				buildMatchResult(matches[match], (match + 1), choice, xstats)
+				/*
+				"<p>" +
+					"<strong>Match " + (match + 1) + "</strong><br/>" +
+					box1 + matches[match].ch1 + " (" + matches[match].x1 + "%) <br/>" +
+					box2 + matches[match].ch2 + " (" + matches[match].x2 + "%)" +
+				"</p>"
+				*/
+
+			match++
+			
+			if( match < 6 ) {
+				//initMatch(match)
+				startMatch(matches[match]);
+			}
+			else {
+				endGame()
+			}
+		}
+		catch( e ) {
+			arrowed(e.message)
+		}
+	}
+	
+	function datTopOption() {
+		vote(1);
+	}
+	
+	function bottomOption() {
+		vote(-1);
+	}
+	
+	function endGame() {
+		contestHistory()
+		if( correct < 6 ) {
+			document.getElementById("funnySaying").innerHTML = "you tore your [quad]"
+		}
+		else {
+			document.getElementById("funnySaying").innerHTML = "you got them all!"
+		}
+		document.getElementById("correct").innerHTML = correct
+		
+		var shareable = document.getElementById("shareable");
+		shareable.value = "#lolXStats #" + gameNumber + "\n" + emoji + " ";
+		for( var i = 0; i < 6; i++ ) {
+			shareable.value += document.getElementById("r" + i).innerHTML
+		}
+		
+		document.getElementById("activeGame").style.display = "none"
+		document.getElementById("endedGame").style.display = ""
+	}
+	
+	function arrowed(msg) {
+		document.getElementById("game").style.display = "none"
+		document.getElementById("error").style.display = ""
+		document.getElementById("error").innerHTML = "argh i tore my " + msg
+	}
+	
+	/*
+	function generateData() {
+		var gen = []
+		for( var i = 0; i < 6; i++ ) {
+			var obj = null
+			var a = Math.floor(random() * datmax)
+			var b = Math.floor(random() * datmax)
+			
+			if( a != b && datx[a] != datx[b] ) {
+				obj = {
+					"ch1":datnm[a],
+					"ch2":datnm[b],
+					"x1":datx[a],
+					"x2":datx[b],
+					"win":(datx[a] - datx[b])
+				};
+			
+				var val = Math.abs(datx[a] - datx[b])
+				for ( var j = 0; j < i; j++ ) {
+					if( Math.abs(gen[j].win) == val ) {
+						obj = null
+					}
+				}
+			}
+			
+			if( obj == null ) {
+				i--;
+			}
+			else {
+				gen[i] = obj
+			}
+		}
+		
+		return gen
+	}
+	
+	function sortData(gen) {
+		var sortGen = [0,0,0,0,0,0]
+		
+		// i could do a good sorting algorithm but i'm bored
+		// this will put the easiest at the start, the hardest at the end, and keep the random order decided for the others
+		var minv = 50
+		var maxv = 0
+		for( var i = 0; i < gen.length; i++ ) {
+			var v = Math.abs(gen[i].win);
+			if( v < minv ) minv = v
+			if( v > maxv ) maxv = v
+		}
+		var j = 1
+		for( var i = 0; i < gen.length; i++ ) {
+			var v = Math.abs(gen[i].win);
+			if( v == maxv ) sortGen[0] = gen[i]
+			else if( v == minv ) sortGen[5] = gen[i]
+			else {
+				sortGen[j] = gen[i]
+				j++
+			}
+		}
+		
+		return sortGen;
+	}
+	*/
+
+	generateToday();
+	runGameList("daily");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+BODY {
+	text-align:center;
+	font-size:20px;
+	background-color: #404040;
+	color: white;
+}
+
+.SMALLERPRINT {
+	font-size:13px;
+}
+
+.FINEPRINT {
+	font-size:10px;
+}
+
+TEXTAREA {
+	resize: none;
+}
+
+.BUTT {
+	font-size:24px
+}
+
+a:link {
+  color: #8080FF;
+}
+
+a:visited {
+  color: #8080FF;
+}
+
+table {
+	border: 1px solid white;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+td {
+	border: 1px solid white;
+	width: 250px
+}
+
+.winner {
+	background:#408040
+}
+
+.TITLE {
+	font-size:48px;
+}

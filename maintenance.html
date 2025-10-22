@@ -1,0 +1,163 @@
+<html>
+<head>
+<title>Maintenance Shell</title>
+</head>
+<body>
+<div id="noscript">
+	<p>Oops, you turned off JavaScript<noscript> (or NoScript is getting in the way)</noscript>.</p>
+	<p>Challenge again.</p>
+</div>
+<div id="error"></div>
+<div id="results">
+	<strong><p>tl;dr YOU CAN SPOIL EVERYTHING FROM THIS PAGE</p></strong>
+	
+	This is a maintenance shell set up to replay days, to ensure results remain consistent when underlying logic changes, or if x-stats are added/removed/modified.
+	<br/>
+	In case you didn't notice, the entire thing is written in JS, with no server-side components to speak of.
+	<br/>
+	In layman's terms, it's easy to cheat, and you shouldn't be proud of doing so.
+	<br/>
+	If you're curious on the underlying logic, that's one thing. But try not to go ruining it for anyone else, okay?
+
+</div>
+<script>
+	document.getElementById("noscript").style.display = "none"
+	document.getElementById("error").style.display = ""
+	document.getElementById("error").innerHTML = "argh i tore my JS compiler"
+</script>
+<script type="text/javascript" src="rng.js"></script>
+<script type="text/javascript" src="dat.js"></script>
+<script type="text/javascript" src="utility.js"></script>
+<script>
+	document.getElementById("error").style.display = "none"
+
+	var fullResults = ""
+	var readable = false
+
+/*
+	var nextGame = 0
+
+	function generateManyGames(startDay, endDay) {
+		nextGame = startDay
+		generateManyGames(endDay)
+	}
+	
+	function generateManyGames(count) {
+		nextGame += 1
+		generateGame(nextGame);
+		if( nextGame < count ) {
+			document.getElementById("results").innerHTML = nextGame + "/" + count;
+			setTimeout(function() { generateManyGames(count); }, 100);
+		}
+		else {
+			document.getElementById("results").innerHTML = fullResults;
+		}
+	}
+*/
+	function generateManyGames(startDay, endDay, curDay) {
+		if( curDay == null ) {
+			fullResults = ""
+			curDay = startDay
+		}
+		generateGame(curDay)
+		
+		if( curDay < endDay ) {
+			document.getElementById("results").innerHTML = curDay + "/" + endDay;
+			setTimeout(function() { generateManyGames(startDay, endDay, curDay + 1); }, 10);
+		}
+		else {
+			document.getElementById("results").innerHTML = fullResults;
+		}
+	}
+
+	function generateGame(number) {
+		seedRandom(number);
+		
+		// start pulling things
+		//var gen = generateData();
+		//var matches = sortData(gen)
+		matches = generateDailyData();
+		
+		// start the game
+		//var result = document.getElementById("results");
+		//result.innerHTML += "DAY " + number + "<br/>"
+		fullResults += "override[" + number + "] = ["
+		for( var i = 0; i < 6; i++ ) {
+			//result.innerHTML += JSON.stringify(matches[i]) + "<br/>"
+			if( readable ) fullResults += "<br/>"
+			fullResults += JSON.stringify(matches[i]) + ","
+		}
+		if( readable ) fullResults += "<br/>"
+		fullResults += "]; "
+	}
+	
+	/*
+	function generateData() {
+		var gen = []
+		for( var i = 0; i < 6; i++ ) {
+			var obj = null
+			var a = Math.floor(random() * datmax)
+			var b = Math.floor(random() * datmax)
+			
+			if( a != b && datx[a] != datx[b] ) {
+				obj = {
+					"ch1":datnm[a],
+					"ch2":datnm[b],
+					"x1":datx[a],
+					"x2":datx[b],
+					"win":(Math.floor((datx[a] - datx[b]) * 100) / 100)
+				};
+			
+				var val = Math.abs(datx[a] - datx[b])
+				for ( var j = 0; j < i; j++ ) {
+					if( Math.abs(gen[j].win) == val ) {
+						obj = null
+					}
+				}
+			}
+			
+			if( obj == null ) {
+				i--;
+			}
+			else {
+				gen[i] = obj
+			}
+		}
+		
+		return gen
+	}
+	
+	function sortData(gen) {
+		var sortGen = [0,0,0,0,0,0]
+		
+		// i could do a good sorting algorithm but i'm bored
+		// this will put the easiest at the start, the hardest at the end, and keep the random order decided for the others
+		var minv = 50
+		var maxv = 0
+		for( var i = 0; i < gen.length; i++ ) {
+			var v = Math.abs(gen[i].win);
+			if( v < minv ) minv = v
+			if( v > maxv ) maxv = v
+		}
+		var j = 1
+		for( var i = 0; i < gen.length; i++ ) {
+			var v = Math.abs(gen[i].win);
+			if( v == maxv ) sortGen[0] = gen[i]
+			else if( v == minv ) sortGen[5] = gen[i]
+			else {
+				sortGen[j] = gen[i]
+				j++
+			}
+		}
+		
+		return sortGen;
+	}
+	*/
+
+	/*
+		readable = false
+		generateManyGames(2, 7);
+	*/
+</script>
+</body>
+</html>
