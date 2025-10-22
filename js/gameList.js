@@ -42,6 +42,17 @@ function runGameList(thisGame) {
 			) +
 			newGameIndicator("2025-10-21") +
 			
+		"</p>" +
+		"<br/>" +
+		"<p>" +
+			"<span class='fineprint'>" + 
+				"<strong>lol xstatsle by Red Shifter, 2025</strong>" +
+			"</span><br/>" +
+			"<span class='footdive'>" + 
+				"Thanks to a lot of people that will be difficult to name" + "<br/>" +
+				"Special thanks to CJayC, as required on all GameFAQs-related things" + "<br/>" +
+				"Special thanks to SBallen for continuing the contests into their dark ages" + "<br/>" +
+			"</span>" + 
 		"</p>"
 	;
 	document.getElementById("gameList").innerHTML = text
