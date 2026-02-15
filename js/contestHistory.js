@@ -39,7 +39,7 @@ function resetInfo() {
 			+ "I set Sephiroth to 45% to keep him consistent with the Summer 2005 Tournament of Champions."
 			+ "'><u>?</u></sup>";
 		var summer2006Tooltip = "<sup title='" 
-			+ "I set Samus to 40% to make her the #1 non-Link Nintendo character of the bracket. Pretty much any number you plug in here is a matter of opinion (unless you wanted to use the Battle Royale, and nobody wants that)."
+			+ "I set Samus to 40% to make her the Mario of the bracket (which is consistent with how people were treating her that year). Pretty much any number you plug in here is a matter of opinion (unless you wanted to use the Battle Royale, and nobody wants that)."
 			+ "'><u>?</u></sup>";
 		var fourWayTooltip = "<sup title='" 
 			+ "Raw X-Stats were calculated by comparing to the winner of the match in which the character was eliminated."
