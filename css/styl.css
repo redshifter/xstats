@@ -17,6 +17,10 @@ BODY {
 	font-size:24px;
 }
 
+.SLIGHTLYSMALLERPRINT {
+	font-size:16px;
+}
+
 .SMALLERPRINT {
 	font-size:13px;
 }
@@ -58,4 +62,23 @@ td {
 
 .winner {
 	background:#408040
+}
+
+.tdOracleDrop {
+	font-size:24px;
+	width:100px
+}
+.tdOracleCenter {
+	font-size: 24px;
+	width: 200px;
+	text-align: center;
+}
+.tdOracleLeft {
+	font-size: 22px;
+	width: 350px;
+	text-align: right;
+}
+.tdOracleRight {
+	font-size: 22px;
+	width: 350px;
 }

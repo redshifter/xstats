@@ -1,4 +1,4 @@
-function buildMatchResult(match, count, choice, xstats) {
+function buildMatchResult(match, count, choice, xstats, addendum) {
 	var answer = ["✔️", "❌"]
 	var box1 = ""
 	var box2 = ""
@@ -21,7 +21,8 @@ function buildMatchResult(match, count, choice, xstats) {
 			box2 + match.ch2 + " (" + match.v2 + "%) <span class='smallerPrint'>[" + match.x2 + "]</span><br/>" +
 			oops +
 			//"<span class='fineprint'>Difficulty: " + getDifficulty(match.win) + "</span>"
-			"<span class='fineprint'>Difficulty: " + getNewDifficulty(match.x1, match.x2) + "</span>"
+			"<span class='fineprint'>Difficulty: " + getNewDifficulty(match.x1, match.x2) + "</span>" +
+			(addendum != null ? ("<br/>" + addendum) : "");
 
 	if( count > 0 ) {
 		return "<p><strong>Match " + count + "</strong><br/>" + text + "</p>"
@@ -105,7 +106,7 @@ function getDifficulty(val) {
 }
 
 function bookMatch(a, b) {
-	match = {
+	var match = {
 		"ch1":datnm[a],
 		"ch2":datnm[b],
 		"x1":datx[a],
