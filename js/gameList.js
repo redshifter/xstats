@@ -51,7 +51,7 @@ function runGameList(thisGame) {
 			"<span class='footdive'>" + 
 				"Thanks to a lot of people that will be difficult to name" + "<br/>" +
 				"Special thanks to CJayC, as required on all GameFAQs-related things" + "<br/>" +
-				"Special thanks to SBallen for continuing the contests into their dark ages" + "<br/>" +
+				"Special thanks to SBAllen for continuing the contests into their dark ages" + "<br/>" +
 				"Fuck Fandom" + "<br/>" +
 			"</span>" + 
 		"</p>"
