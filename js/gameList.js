@@ -57,7 +57,7 @@ function runGameList(thisGame) {
 		"<br/>" +
 		"<p>" +
 			"<span class='fineprint'>" + 
-				"<strong>lol xstatsle by Red Shifter, 2025</strong>" +
+				"<strong>lol xstatsle by Red Shifter, 2025-2026</strong>" +
 			"</span><br/>" +
 			"<span class='footdive'>" + 
 				"Thanks to a lot of people that will be difficult to name" + "<br/>" +
