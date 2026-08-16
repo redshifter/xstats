@@ -107,6 +107,10 @@
 			document.getElementById("modeRule").innerHTML = "Based on famous battles which actually took place in ancient GameFAQs.<br/><span class='smallerprint'>So there's this giant Master Hand...</span>"
 			document.getElementById("modeTitle").innerHTML = "X-STATS: DAYS OF THE CONTEST"
 		}
+		else if( mode == "fodder" ) {
+			document.getElementById("modeRule").innerHTML = "<strong>Fodder Mode</strong>: Anyone with an X-Stat of 12.00 or less!<br/><span class='fineprint'>I was trying to make it the bottom 200, but then saw Gordon Freeman and couldn't resist.</span>"
+			document.getElementById("modeTitle").innerHTML = "LOL X-STATS FODDER MODE!"
+		}
 		else if( mode == null ) {
 			document.getElementById("modeRule").style.display = ""
 			mode = "x-stats"
@@ -177,7 +181,7 @@
 		}
 	}
 */
-	function characterInMode(name) {
+	function characterInMode(name, xstat) {
 		if( mode == "sicko" ) {
 			if(
 				 name.indexOf("Summer 2007") > -1 ||
@@ -228,6 +232,14 @@
 		else if( mode == "contest" ) {
 			// we shouldn't be here
 		}
+		else if( mode == "fodder" ) {
+			if( xstat < 12.00 ) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
 		else {
 			// everyone is here!
 			return true;
@@ -238,7 +250,7 @@
 		inPlay = 0
 		var used = []
 		for( var i = 0; i < datmax; i++ ) {
-			if( characterInMode(datnm[i]) ) {
+			if( characterInMode(datnm[i], datx[i]) ) {
 				charList[inPlay] = -1
 				inPlay++
 				used[i] = false
