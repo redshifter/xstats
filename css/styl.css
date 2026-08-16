@@ -5,6 +5,18 @@ BODY {
 	color: white;
 }
 
+INPUT {
+	font-size:20px;
+}
+
+.TITLE {
+	font-size:48px;
+}
+
+.BIGGER {
+	font-size:24px;
+}
+
 .SMALLERPRINT {
 	font-size:13px;
 }
@@ -46,8 +58,4 @@ td {
 
 .winner {
 	background:#408040
-}
-
-.TITLE {
-	font-size:48px;
 }
