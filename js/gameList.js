@@ -33,14 +33,25 @@ function runGameList(thisGame) {
 				: "Royale Mode"
 			) +
 			newGameIndicator("2025-10-19") +
-
+		"<br/>" +
+			(thisGame != "fodder"
+				? "<a href='streak.html?mode=fodder'>Fodder Mode</a>"
+				: "Fodder Mode"
+			) +
+			newGameIndicator("2026-08-16") +
 		"<br/>" + 
-		"<br class='finePrint'/>" + // make a separator
 			(thisGame != "contest"
 				? "<a href='streak.html?mode=contest'>Days of the Contest</a>"
 				: "Days of the Contest"
 			) +
 			newGameIndicator("2025-10-21") +
+		"<br class='finePrint'/>" + // make a separator
+		"<br/>" + 
+			(thisGame != "oracle"
+				? "<a href='oracle.html'>Oracle Streak!</a>"
+				: "Oracle Streak!"
+			) +
+			newGameIndicator("2026-08-16") +			
 			
 		"</p>" +
 		"<br/>" +
@@ -65,7 +76,7 @@ function newGameIndicator(gameDate) {
 	var day = gameDate.substring(8,10);
 
 	// the month starts at zero. this is why nobody likes working with dates
-	var terminus = Date.UTC(+year, (+month) - 1, (+day) + 28); // let's make the "new" time 4 weeks i guess?
+	var terminus = Date.UTC(+year, (+month) - 1, (+day) + 90); // let's make the "new" time 3 months - nobody is coming here anyway
 
 	var d = new Date()
 	var today = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
