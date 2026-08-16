@@ -2,9 +2,9 @@
 //
 // this contains every GameFAQs singles match except:
 // - all exhibition matches
-// - Link/Cloud Summer 2006 (because those characters don't exist in my game)
-// - loser bracket Fall 2018
-// - Pikachu/Mega Man Fall 2018 (because that match went both ways based on who was being votestuffed in the other match)
+// - Summer 2006 Link/Cloud (the characters need to exist in the game to be here. SC2K6 battle royale is not in the game because its raw x-stats would make everything weird)
+// - Fall 2018 loser bracket
+// - Fall 2018 Pikachu/Mega Man from winner's bracket (this match went both ways based on who was being votestuffed in the other match, so it's not fair to include it)
 var realMatchList = [
 	[0,5],
 	[0,1],
