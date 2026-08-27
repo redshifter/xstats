@@ -52,6 +52,12 @@ function runGameList(thisGame) {
 				: "Oracle Streak!"
 			) +
 			newGameIndicator("2026-08-16") +			
+		"<br/>" + 
+			(thisGame != "encyclopedia"
+				? "<a href='oracle.html?mode=encyclopedia'>Encyclopedia Mode</a>"
+				: "Encyclopedia Mode"
+			) +
+			newGameIndicator("2026-08-27") +			
 			
 		"</p>" +
 		"<br/>" +

@@ -99,6 +99,10 @@
 			document.getElementById("modeRule").style.display = ""
 			mode = "oracle"
 		}
+		else if( mode == "encyclopedia" ) {
+			document.getElementById("modeTitle").innerHTML = "LOL X-STATS ENCYCLOPEDIA MODE!";
+			document.getElementById("modeRule").innerHTML = "Oracle for matches that actually took place on ancient GameFAQs. So there's this giant Master Hand...";
+		}
 		else {
 			throw "game mode";
 		}
@@ -116,12 +120,12 @@
 			
 			document.getElementById("gameResults").innerHTML = ""
 			
-			// if( mode == "contest" ) {
-			// 	realMatchShuffle();
-			// }
-			// else {
+			if( mode == "encyclopedia" ) {
+				realMatchShuffle();
+			}
+			else {
 				shuffle()
-			// }
+			}
 
 			initMatch()
 			
@@ -299,6 +303,14 @@
 		try {
 			var resultBox = document.getElementById("results")
 			var streakBox = document.getElementById("streak")
+			var addendum;
+
+			var collection = "[";
+			for( var i = 0; i < difficulty; i++ ) {
+				collection += document.getElementById("butt" + i).value + " ";
+			}
+			collection = collection.substring(0, collection.length - 1);
+			collection += "]";
 
             if( correct == 0 ) resultBox.innerHTML = "";
 
@@ -306,14 +318,20 @@
 				correct++
 				resultBox.innerHTML += text[0]
 				streakBox.innerHTML = correct + " " + diffShort + " " + mode + " streak!"
-    			resultsHTML = buildMatchResult(match, count) + resultsHTML;            
+
+				addendum = "BEATED " + collection;
+
+    			resultsHTML = buildMatchResult(match, count, null, null,
+					addendum
+				) + resultsHTML;            
 				initMatch()
 			}
 			else {
 				resultBox.innerHTML += text[1]
 				streakBox.innerHTML = correct + " " + diffShort + " " + mode + " streak"
                 off = Math.floor(Math.abs(value - match.winv) * 100) / 100;
-                var addendum = "You chose " + value + "% [OFF BY " + off + "%]"
+                //addendum = "You chose " + value + "% [OFF BY " + off + "%]"
+				addendum = "Incorrectly chose " + value + "% " + collection;
     			resultsHTML = buildMatchResult(match, count, null, null, 
                         "<span class='smallertext'>" + addendum + "</span>"
                     ) + resultsHTML;
