@@ -21,8 +21,13 @@ function buildMatchResult(match, count, choice, xstats, addendum) {
 			box2 + match.ch2 + " (" + match.v2 + "%) <span class='smallerPrint'>[" + match.x2 + "]</span><br/>" +
 			oops +
 			//"<span class='fineprint'>Difficulty: " + getDifficulty(match.win) + "</span>"
-			"<span class='fineprint'>Difficulty: " + getNewDifficulty(match.x1, match.x2) + "</span>" +
-			(addendum != null ? ("<br/>" + addendum) : "");
+			//"<span class='fineprint'>Difficulty: " + getNewDifficulty(match.x1, match.x2) + "</span>" +
+			//(addendum != null ? ("<br/>" + addendum) : "")
+			(addendum == null
+				? ("<span class='fineprint'>Difficulty: " + getNewDifficulty(match.x1, match.x2) + "</span>")
+				: addendum
+			)
+			;
 
 	if( count > 0 ) {
 		return "<p><strong>Match " + count + "</strong><br/>" + text + "</p>"
